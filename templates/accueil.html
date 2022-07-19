@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-    {% for article in articles %}
-        <h1>{{ article["titre"]}}</h1>
-        <p>{{article["date"]}}</p>
-    {% endfor %}
+
 
 
 <header>
@@ -16,16 +13,17 @@
     <nav class="container">
 
         <ul>
-            <li><a href="article.html">HISTOIRES</a></li>
+            <li><a href="article">HISTOIRES</a></li>
         </ul>
             <p>Blog</p>
         <ul>
-            <li><a href="">RECHERCHER</a></li>
+            <li><a href="connexion">Connecter</a></li>
             
         </ul>
     </nav>
+ 
     {%for elmt in articles %}
-        <p>{{elmt["titre"]}}</p>  
+        <a href="article/{{elmt['titre']}}">{{elmt["titre"]}}</a>     
     {% endfor %}
 </header>
 {% endblock %}
