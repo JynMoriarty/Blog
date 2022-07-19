@@ -1,26 +1,35 @@
 {% extends "base.html" %}
 
 {% block body %}
-<header>
-    <h1>HISTORIA</h1>
+<body>
+    <h1>HISTORI.A</h1>
     <h1 class="description">
-        Bienvenue à Historia!
+        Bienvenue à Histori.a : blog d'articles scientifique !
     </h1>
 
     <nav class="container">
-
         <ul>
-            <li><a href="article.html">HISTOIRES</a></li>
+            <li><a href="article.html">RECHERCHER</a></li>
         </ul>
-            <p>Blog</p>
         <ul>
-            <li><a href="">RECHERCHER</a></li>
+            <li><a href="">CONNEXION</a></li>
+            <li><a href=""></a></li>
             
         </ul>
     </nav>
+    
     {%for elmt in articles %}
-        <p>{{elmt["titre"]}}</p>  
-    {% endfor %}
-</header>
+        <h3>
+            <p class = title >{{elmt["titre"]}}</p> 
+            <p class = "digital">{{elmt["date"]}}</p>  
+            <p>{{elmt["texte"]}}</p>  
+            <p>{{elmt["commentaire.date"]}}</p> 
+            <p>{{elmt["commentaire.Username"]}}</p>  
+            <p>{{elmt["commentaire.text"]}}</p>  
+        </h3>
+        {% endfor %}
+    
+       
+</body>
 {% endblock %}
 

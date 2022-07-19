@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, render_template, redirect, url_for, request, session
 from pymongo import MongoClient
 # pprint library is used to make the output look more pretty
@@ -9,7 +10,7 @@ db = client.blog
 articles = db.articles
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/",methods = ["GET","POST"])
 def accueil():
     liste_article=articles.find({})
     return render_template("accueil.html",articles=liste_article)
