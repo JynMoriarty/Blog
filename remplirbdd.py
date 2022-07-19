@@ -29,5 +29,33 @@ article1 =(
     }        
 
 )
-reponse = articles.insert_one(article1)
-print(articles.find_one({}))
+articles.insert_one(article1)
+
+article2 =(
+
+    {   
+        "titre" : "Microscope à effet tunnel",
+        "date":str(datetime.now()),
+        "texte":"L'effet tunnel est la propriété que possède un objet quantique de franchir une barrière de potentiel",
+        "commentaire": [
+            {
+            "date" :str(datetime.now()),
+            "Username": None,
+            "User_ID": None,
+            "text": "lorem ipsum"
+        
+            }, {
+            "date" :str(datetime.now()),
+            "Username": None,
+            "User_ID": None,
+            "text": "lorem ipsum 2"
+        
+            }
+        ]   
+    }        
+
+)
+articles.insert_one(article2)
+
+for article in articles.find_one({}):
+    print(article)
