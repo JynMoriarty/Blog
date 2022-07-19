@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
 {% block body %}
-<body>
-    <h1>HISTORI.A</h1>
+
+
+
+<header>
+    <h1>HISTORIA</h1>
     <h1 class="description">
         Bienvenue à Histori.a : blog d'articles scientifique !
     </h1>
@@ -31,5 +34,15 @@
     
        
 </body>
+            <li><a href="connexion">Connecter</a></li>
+            
+        </ul>
+    </nav>
+ 
+    {%for elmt in articles %}
+        <a href="article/{{elmt['titre']}}">{{elmt["titre"]}}</a>     
+    {% endfor %}
+</header>
 {% endblock %}
+
 

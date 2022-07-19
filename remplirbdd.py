@@ -1,3 +1,4 @@
+
 from pymongo import MongoClient
 from datetime import datetime
 client = MongoClient("127.0.0.1:27017")
@@ -81,3 +82,7 @@ article3 =(
 
 )
 articles.insert_one(article3)
+
+
+
+
