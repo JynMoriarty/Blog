@@ -1,23 +1,12 @@
 {% extends "base.html" %}
 
 {% block body %}
-<header>
-    <h1>HISTORIA</h1>
-    <h1 class="description">
-        Bienvenue à Historia : blog de création d'histoire partipatif 
-    </h1>
-    <nav class="container">
+    {% for article in articles %}
+        <h1>{{ article["titre"]}}</h1>
+        <p>{{article["date"]}}</p>
+    {% endfor %}
 
-        <ul>
-            <li><a href="article.html">HISTOIRES</a></li>
-        </ul>
 
-        <ul>
-
-            <li><a href="">RECHERCHER</a></li>
-            
-        </ul>
-    </nav>
-</header>
 {% endblock %}
+
 
