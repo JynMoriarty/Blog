@@ -1,0 +1,57 @@
+@font-face {
+    font-family: "lmroman12";
+    font-size: 48px;
+    font-weight: bold;
+    src: url("fonts/lmroman12-bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "montserrat";
+    font-size: 48px;
+    font-weight: bold;
+    src: url("fonts/MontserratAlternates-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "kaushans";
+    font-size: 48px;
+    font-weight: bold;
+    src: url("fonts/KaushanScript-Regular.otf") format("opentype");
+
+}
+
+@font-face {
+    font-family: "opensans";
+    font-size: 48px;
+    font-weight: bold;
+    src: url("fonts/OpenSans-Bold.ttf") format("opentype");
+}
+@font-face {
+    font-family: "sketchzone";
+    font-size: 48px;
+    font-weight: bold;
+    src: url("fonts/Sketchzone.otf") format("opentype");
+}
+@font-face {
+    font-family: "satisfy";
+    font-size: 48px;
+    font-weight: bold;
+    src: url("fonts/Satisfy-Regular.ttf") format("opentype");
+}
+.description {
+    font-family: "satisfy";
+}
+h1 {
+    text-align: center;
+    font-family: "sketchzone";
+    font-size: 80px;
+
+}
+.container {
+    background-color: #606D5D;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+
+}
