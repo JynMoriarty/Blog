@@ -6,18 +6,21 @@
     <h1 class="description">
         Bienvenue à Historia : blog de création d'histoire partipatif 
     </h1>
+
     <nav class="container">
 
         <ul>
             <li><a href="article.html">HISTOIRES</a></li>
         </ul>
-
+            <p>Blog</p>
         <ul>
-
             <li><a href="">RECHERCHER</a></li>
             
         </ul>
     </nav>
+    {%for elmt in articles %}
+        <p>{{elmt["titre"]}}</p>  
+    {% endfor %}
 </header>
 {% endblock %}
 

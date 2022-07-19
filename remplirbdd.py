@@ -29,5 +29,6 @@ article1 =(
     }        
 
 )
+
 reponse = articles.insert_one(article1)
 print(articles.find_one({}))
