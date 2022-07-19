@@ -18,7 +18,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def accueil():
-<<<<<<< HEAD
     liste_article = [
 
         {
@@ -42,7 +41,6 @@ def accueil():
     #return render_template("article.html")
 #@app route("/")
 #def bdd():
-=======
     liste_article=articles.find({})
     return render_template("accueil.html",articles=liste_article)
 
@@ -52,4 +50,3 @@ def article(nom):
     return render_template("article.html", article=mon_article)
 
     
->>>>>>> refs/remotes/origin/main
