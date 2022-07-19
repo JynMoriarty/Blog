@@ -10,5 +10,3 @@ def accueil():
 def article():
     return render_template("article.html")
 
-@app route("/")
-def bdd():
