@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, render_template, redirect, url_for, request, session
 from datetime import datetime
 from pymongo import MongoClient
@@ -24,7 +25,7 @@ utilisateurs =db.utilisateurs
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SecretKey'
 
-@app.route("/")
+@app.route("/",methods = ["GET","POST"])
 def accueil():
     liste_article=articles.find({})
     try : 

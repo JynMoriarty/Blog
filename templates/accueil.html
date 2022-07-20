@@ -7,18 +7,35 @@
 <header>
     <h1>HISTORIA</h1>
     <h1 class="description">
-        Bienvenue à Historia!
+        Bienvenue à Histori.a : blog d'articles scientifique !
     </h1>
 {% if login %}
 {{login}}
 {%endif%}
     <nav class="container">
-
         <ul>
             <li><a href="inscription">Créer un compte</a></li>
         </ul>
-            <p>Blog</p>
         <ul>
+            <li><a href="">CONNEXION</a></li>
+            <li><a href=""></a></li>
+            
+        </ul>
+    </nav>
+    
+    {%for elmt in articles %}
+        <h3>
+            <p class = title >{{elmt["titre"]}}</p> 
+            <p class = "digital">{{elmt["date"]}}</p>  
+            <p>{{elmt["texte"]}}</p>  
+            <p>{{elmt["commentaire.date"]}}</p> 
+            <p>{{elmt["commentaire.Username"]}}</p>  
+            <p>{{elmt["commentaire.text"]}}</p>  
+        </h3>
+        {% endfor %}
+    
+       
+</body>
             <li><a href="connexion">Connecter</a></li>
             
         </ul>
