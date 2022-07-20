@@ -44,7 +44,7 @@ def article(nom):
 def inscription():
     form = Inscription()
     if form.validate_on_submit():
-        creation_utilisateur = utilisateurs.insert_one({"login_inscription" :form.data["login_inscription"],"password_inscription":form.data["password_inscription"]})
+        creation_utilisateur = utilisateurs.insert_one({"login" :form.data["login_inscription"],"password":form.data["password_inscription"]})
         print(creation_utilisateur)
         return redirect(url_for("accueil"))
     return render_template("creation_compte.html",form=form)

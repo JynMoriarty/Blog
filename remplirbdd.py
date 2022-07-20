@@ -9,6 +9,13 @@ db = client.blog
 utilisateurs =db.utilisateurs
 #utilisateur_antoine = {"login" : "antoine@meresse.info","password" : "01234"}
 #reponse = utilisateurs.insert_one(utilisateur_antoine )
+"""
+#test
+curseur = utilisateurs.find({})
+
+for elmt in curseur:
+    print(elmt)
+"""
 
 
 """
