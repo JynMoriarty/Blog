@@ -1,4 +1,4 @@
-
+from pprint import pprint
 from pymongo import MongoClient
 from datetime import datetime
 client = MongoClient("127.0.0.1:27017")
@@ -9,6 +9,7 @@ db = client.blog
 utilisateurs =db.utilisateurs
 #utilisateur_antoine = {"login" : "antoine@meresse.info","password" : "01234"}
 #reponse = utilisateurs.insert_one(utilisateur_antoine )
+
 """
 #test
 curseur = utilisateurs.find({})
@@ -16,18 +17,25 @@ curseur = utilisateurs.find({})
 for elmt in curseur:
     print(elmt)
 """
-
-
-"""
-"""
-
 """
 
 #créer base de données atricles
 
-articles = db.articles
 
+articles = db.articles
+curseur = articles.find({})
+
+for elmt in curseur:
+    print(elmt)
+
+"""
+
+"""
+
+
+#test
 db.articles.drop()
+
 article1 =(
 
     {   
@@ -106,7 +114,4 @@ article3 =(
 articles.insert_one(article3)
 
 
-
-
 """
-

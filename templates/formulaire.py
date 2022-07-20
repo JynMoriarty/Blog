@@ -17,3 +17,7 @@ class Inscription(FlaskForm):
     password_inscription = PasswordField("password inscription : ")
     remember_inscription =BooleanField("Sauvegarder les identifiants",default=False)
     submit_inscription = SubmitField("Entrer pour inscription") 
+
+class Commentaire(FlaskForm):
+    commentaire_utilisateur =StringField("Veuillez renter votre commentaire")
+    submit_commentaire= SubmitField("Afficher votre commentaire.")
