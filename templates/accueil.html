@@ -9,11 +9,13 @@
     <h1 class="description">
         Bienvenue à Historia!
     </h1>
-
+{% if login %}
+{{login}}
+{%endif%}
     <nav class="container">
 
         <ul>
-            <li><a href="article">HISTOIRES</a></li>
+            <li><a href="inscription">Créer un compte</a></li>
         </ul>
             <p>Blog</p>
         <ul>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block body %}
+<header>
+
+    <h1>Inscription</h1>
+    <h1>What's your name</h1>
+    <form action="" method="post">
+    {{form.hidden_tag()}}
+    <p>{{form.login_inscription.label()}}{{form.login_inscription()}}</p>
+    <p>{{form.password_inscription.label()}}{{form.password_inscription()}}</p>
+    <p>{{form.remember_inscription.label()}}{{form.remember_inscription()}}</p>
+    <p>{{form.submit_inscription()}}</p>
+    {{form.csrf_token}}
+    </form>
+
+</header>   
+{% endblock %}
