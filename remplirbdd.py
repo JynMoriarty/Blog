@@ -17,7 +17,7 @@ curseur = utilisateurs.find({})
 for elmt in curseur:
     print(elmt)
 """
-"""
+
 
 #créer base de données atricles
 
@@ -28,7 +28,7 @@ curseur = articles.find({})
 for elmt in curseur:
     print(elmt)
 
-"""
+
 
 """
 
@@ -47,14 +47,14 @@ article1 =(
             "date" :str(datetime.now()),
             "Username": None,
             "User_ID": None,
-            "text": "lorem ipsum"
-        
+            "text": "lorem ipsum",
+            "validé" : True
             }, {
             "date" :str(datetime.now()),
             "Username": None,
             "User_ID": None,
-            "text": "lorem ipsum 2"
-        
+            "text": "lorem ipsum 2",
+            "validé" : True    
             }
         ]   
     }        
@@ -73,14 +73,14 @@ article2 =(
             "date" :str(datetime.now()),
             "Username": None,
             "User_ID": None,
-            "text": "lorem ipsum"
-        
+            "text": "lorem ipsum",
+            "validé" : True        
             }, {
             "date" :str(datetime.now()),
             "Username": None,
             "User_ID": None,
-            "text": "lorem ipsum 2"
-        
+            "text": "lorem ipsum 2",
+            "validé" : True        
             }
         ]   
     }        
@@ -98,14 +98,14 @@ article3 =(
             "date" :str(datetime.now()),
             "Username": None,
             "User_ID": None,
-            "text": "lorem ipsum"
-        
+            "text": "lorem ipsum",
+            "validé" : True        
             }, {
             "date" :str(datetime.now()),
             "Username": None,
             "User_ID": None,
-            "text": "lorem ipsum 2"
-        
+            "text": "lorem ipsum 2",
+            "validé" : True        
             }
         ]   
     }        

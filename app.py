@@ -48,7 +48,9 @@ def voir_article(nom):
         new.append({"date" :str(datetime.now()),
                         "Username" :session["login"],
                         "User_ID" : id_utilisateur,
-                        "text" : form.data["commentaire_utilisateur"]
+                        "text" : form.data["commentaire_utilisateur"],
+                        "validé" : False
+
                         })
         print(new)         
         articles.update_one({"titre":mon_article["titre"]},
