@@ -25,7 +25,7 @@
     
     {%for elmt in articles %}
         <h3>
-            <p class = title >{{elmt["titre"]}}</p> 
+            <a href="article/{{elmt['titre']}}" class = title >{{elmt["titre"]}}</a> 
             <p class = "digital">{{elmt["date"]}}</p>  
             <p>{{elmt["texte"]}}</p>  
             <p>{{elmt["commentaire.date"]}}</p> 

@@ -101,8 +101,5 @@ articles.insert_one(article3)
 
 
 
-<<<<<<< HEAD
 """
 
-=======
->>>>>>> 69e7d7422fdac928f10ed8631e4821c66c6c62bb
