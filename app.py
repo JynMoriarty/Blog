@@ -77,6 +77,7 @@ def connexion():
 
     form = Connexion()
     if form.validate_on_submit():
+        print("c'est bon")
         utilisateur = utilisateurs.find_one(
             {"login": form.data["login"], "password": form.data["password"]})
         if form.data["login"] == utilisateur["login"] and form.data["password"] == utilisateur["password"]:

@@ -9,9 +9,9 @@
     <h3>
     <form action="" method="post">
     {{form.hidden_tag()}}
-    <p>{{form.titre_article.label()}}{{form.titre_article(required ='required')}}</p>
-    <p>{{form.texte_article.label()}}{{form.texte_article(required='required')}}</p>
-    <p>{{form.submit_article()}}</p>
+    <p>{{form.article_ajout_titre.label()}}{{form.article_ajout_titre(required ='required')}}</p>
+    <p>{{form.article_ajout_texte.label()}}{{form.article_ajout_texte(required='required')}}</p>
+    <p>{{form.submit_ajout_texte ()}}</p>
     {{form.csrf_token}}
     </form>
     </h3>
