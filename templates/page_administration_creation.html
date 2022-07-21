@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<body>
+
+    <h1>Création d'un article</h1>
+    <h3>
+    <form action="" method="post">
+    {{form.hidden_tag()}}
+    <p>{{form.titre_article.label()}}{{form.titre_article(required ='required')}}</p>
+    <p>{{form.texte_article.label()}}{{form.texte_article(required='required')}}</p>
+    <p>{{form.submit_article()}}</p>
+    {{form.csrf_token}}
+    </form>
+    </h3>
+    {%for elmt in articles %}
+    <h3>
+        <p><a class=title href="article/{{elmt['titre']}}">{{elmt["titre"]}}</a></p>
+        <p>{{elmt["texte"]}}</p>
+        <p> Posté le {{elmt["date"]}}</p>
+        <p><a class=title href="article/{{elmt['titre']}}">COMMENTAIRES </a></p>
+
+    </h3>
+    {% endfor %}
+</body>  
+{% endblock %}

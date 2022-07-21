@@ -110,3 +110,13 @@ a {
     font-family: 'Times New Roman', Times, serif;
     
 }
+li{
+    font-family: "lmroman12";
+    font-size: 25px;
+    text-decoration: none;
+    color: white;
+}
+.commentaire{
+    border-top: 2px solid black;
+    width :70px;
+}

@@ -8,22 +8,28 @@
         Bienvenue à Histori.a : blog d'articles scientifique !
     </h1>
 
-    
-    {% if login %}
-    {{login}}
-    {%endif%}
+
+
     <nav class="container">
+        {% if login %}
+        
+        <ul>
+            <li>Bienvenue {{login}}</li>
+        </ul>
+        <ul>
+            <li><a href="administration_creation">Accéder administration</a></li>
+        </ul>
+        {%else%}
+        <ul>
+            <li><a href="connexion">CONNEXION</a></li>
+        </ul>
         <ul>
             <li><a href="inscription">INSCRIPTION</a></li>
         </ul>
-        <ul>
-            <li><a href="administration">Accéder administration</a></li>
-        </ul>
-        <ul>
-            <li><a href="connexion">CONNEXION</a></li>
-            <li><a href=""></a></li>
-
-        </ul>
+        {%endif%}
+        
+        
+        
     </nav>
 
     {%for elmt in articles %}
