@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from datetime import datetime
 from pymongo import MongoClient
 import remplirbdd
-from templates.formulaire import Connexion,Inscription,Commentaire
+from templates.formulaire import Connexion,Inscription,Commentaire,Gestion_article
 client = MongoClient("127.0.0.1:27017")
 from pymongo import MongoClient
 # pprint library is used to make the output look more pretty
@@ -51,8 +51,7 @@ def voir_article(nom):
                         "text" : form.data["commentaire_utilisateur"],
                         "validé" : False
 
-                        })
-        print(new)         
+                        })      
         articles.update_one({"titre":mon_article["titre"]},
             {"$set" : {
                 "commentaire" : new
@@ -87,3 +86,31 @@ def connexion():
             session["login"] = utilisateur["login"]
             return redirect(url_for("accueil"))
     return render_template("connexion.html", form=form)
+
+@app.route('/administration',methods=['GET','POST'])
+def administration():
+    liste_article=articles.find({})
+    form=Gestion_article()
+
+ 
+    if form.validate_on_submit():
+
+        titre_article= form.data["article_ajout_titre"]
+        texte_article = form.data["article_ajout_texte"]
+
+        if len(titre_article) !=0 :
+            new = articles.find({"titre":form.data["article_ajout_titre"]})
+            for elmt in new:
+                if elmt is None:
+                    print("C'est Bon")
+                else:
+                    print("C'est pas bon")            
+            articles.update_one({"titre":titre_article},
+            {"$set" : {
+                "text" : texte_article
+                }
+            })
+        else:
+            print("C'est vide")
+
+    return render_template("page_administration.html", form=form, articles = liste_article)

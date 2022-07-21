@@ -21,3 +21,8 @@ class Inscription(FlaskForm):
 class Commentaire(FlaskForm):
     commentaire_utilisateur =StringField("Veuillez renter votre commentaire")
     submit_commentaire= SubmitField("Afficher votre commentaire.")
+
+class Gestion_article(FlaskForm):
+    article_ajout_titre=StringField("Veuillez entrer le titre de votre article : ")
+    article_ajout_texte=StringField("Veuillez taper votre texte : ")
+    submit_ajout_texte = SubmitField("Envoyer votre texte") 
