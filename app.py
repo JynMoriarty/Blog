@@ -138,3 +138,12 @@ def administration_modification():
             articles.delete_one({"titre":titre_article_a_supprimer})
                         
     return render_template("page_administration_modification.html", form1=form1, articles = liste_article,form2=form2)
+
+@app.route("/moderation_commentaire", methods=["GET", "POST"])
+def moderation_commentaire():
+    liste_article = articles.find({})
+    try:
+        login = session["login"]
+    except:
+        login = None
+    return render_template("affichage_article_pour_commentaire.html", articles=liste_article, login=login)
