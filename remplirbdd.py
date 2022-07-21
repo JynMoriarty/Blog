@@ -24,17 +24,19 @@ for elmt in curseur:
 #créer base de données atricles
 
 """
-articles = db.articles
+
 curseur = articles.find({})
 
 for elmt in curseur:
     print(elmt)
 
 """
-
 """
 
 
+"""
+
+articles = db.articles
 #test
 db.articles.drop()
 
@@ -116,4 +118,3 @@ article3 =(
 articles.insert_one(article3)
 
 
-"""
