@@ -11,13 +11,13 @@
             <p>{{form.submit_ajout_texte()}}</p>
             {{form.csrf_token}}            
         </form>
-        {%for elmt in articles %}
-        <h3>
-            <p>{{elmt["titre"]}}</a> 
-            <p class = "digital">{{elmt["date"]}}</p>  
-            <p>{{elmt["texte"]}}</p>  
+        <p class=title>COMMENTAIRES :</p>
 
-        </h3>
+        {%for elmt in article["commentaire"] %}
+        <p>{{elmt["Username"]}}</p>
+        <p>{{elmt["text"]}}</p>
+        <p>posté le {{elmt["date"]}}</p>
+        <div class="commentaire"></div>
         {% endfor %}
 
 </header>   

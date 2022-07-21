@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from datetime import datetime
 from pymongo import MongoClient
 import remplirbdd
-from templates.formulaire import Connexion,Inscription,Commentaire,Gestion_article
+from templates.formulaire import Connexion,Inscription,Commentaire,Gestion_article, Suppression_article
 client = MongoClient("127.0.0.1:27017")
 from pymongo import MongoClient
 # pprint library is used to make the output look more pretty
@@ -87,30 +87,30 @@ def connexion():
             return redirect(url_for("accueil"))
     return render_template("connexion.html", form=form)
 
-@app.route('/administration',methods=['GET','POST'])
-def administration():
+@app.route('/administration_modification',methods=['GET','POST'])
+def administration_modification():
     liste_article=articles.find({})
-    form=Gestion_article()
-
+    form1=Gestion_article()
+    form2=Suppression_article()
  
-    if form.validate_on_submit():
+    if form1.validate_on_submit():
+        new1 = articles.find_one({"titre":form1.data["article_ajout_titre"]})
+        if new1 is not None:
+            titre_article= form1.data["article_ajout_titre"]
 
-        titre_article= form.data["article_ajout_titre"]
-        texte_article = form.data["article_ajout_texte"]
-
-        if len(titre_article) !=0 :
-            new = articles.find({"titre":form.data["article_ajout_titre"]})
-            for elmt in new:
-                if elmt is None:
-                    print("C'est Bon")
-                else:
-                    print("C'est pas bon")            
+            
+            texte_article = form1.data["article_ajout_texte"]
+            print(texte_article)
+            print("c'est bon")
             articles.update_one({"titre":titre_article},
             {"$set" : {
-                "text" : texte_article
+                "texte" : texte_article
                 }
             })
-        else:
-            print("C'est vide")
-
-    return render_template("page_administration.html", form=form, articles = liste_article)
+    if form2.validate_on_submit():
+        new2 = articles.find_one({"titre":form2.data["article_suppression_titre"]})
+        if new2 is not None:
+            titre_article_a_supprimer= form2.data["article_suppression_titre"]
+            articles.delete_one({"titre":titre_article_a_supprimer})
+                        
+    return render_template("page_administration_modification.html", form1=form1, articles = liste_article,form2=form2)

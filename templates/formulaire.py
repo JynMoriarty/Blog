@@ -26,3 +26,7 @@ class Gestion_article(FlaskForm):
     article_ajout_titre=StringField("Veuillez entrer le titre de votre article : ")
     article_ajout_texte=StringField("Veuillez taper votre texte : ")
     submit_ajout_texte = SubmitField("Envoyer votre texte") 
+
+class Suppression_article(FlaskForm):
+    article_suppression_titre=StringField("Veuillez entrer le titre de votre article : ")
+    submit_suppression_texte = SubmitField("Envoyer votre texte") 
