@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<header>
+
+    <h1>HISTORIA article</h1>
+        <form action="" method="post">
+            <p>{{form1.article_ajout_titre.label()}}{{form1.article_ajout_titre(required="required")}}</p>
+            <p>{{form1.article_ajout_texte.label()}}{{form1.article_ajout_texte()}}</p>
+            <p>{{form1.submit_ajout_texte()}}</p>
+            {{form1.csrf_token}}            
+        </form>
+        <form action="" method="post">
+            <p>{{form2.article_suppression_titre.label()}}{{form2.article_suppression_titre(required="required")}}</p>
+            <p>{{form2.submit_suppression_texte()}}</p>
+            {{form2.csrf_token}}            
+        </form>
+               
+        {%for elmt in articles %}
+        <h3>
+            <p>{{elmt["titre"]}}</p> 
+            <p class = "digital">{{elmt["date"]}}</p>  
+            <p>{{elmt["texte"]}}</p>  
+
+        </h3>
+        {% endfor %}
+
+</header>   
+{% endblock %}
