@@ -1,20 +1,37 @@
 {% extends "base.html" %}
 
 {% block body %}
-{% if login %}
-{{login}}
-{%endif%}
-<header>
+<h1> {{article["titre"]}}</h1>
+<h3>
 
-    <h1>HISTORIA article</h1>
-    <p>    {{article["texte"]}}</p>
-    <form action="" method="post">
-        {{form.hidden_tag()}}
-        <p>{{form.commentaire_utilisateur.label()}}{{form.commentaire_utilisateur()}}</p>
-        <p>{{form.submit_commentaire.label()}}{{form.submit_commentaire()}}</p>
-        {{form.csrf_token}}
+
+    <p>{{article["texte"]}}</p>
+    <p>Posté le {{article["date"]}}</p>
+
+    <h3>
+        <p class=title>COMMENTAIRES :</p>
+
+        {%for elmt in article["commentaire"] %}
+        <p>{{elmt["Username"]}}</p>
+        <p>{{elmt["text"]}}</p>
+        <p>posté le {{elmt["date"]}}</p>
+        <div class="commentaire"></div>
+        {% endfor %}
+        {% if login %}
+        {{login}}
+        {%endif%}
+
+        <form action="" method="post">
+            {{form.hidden_tag()}}
+            <p>{{form.commentaire_utilisateur.label()}}{{form.commentaire_utilisateur()}}</p>
+            <p>{{form.submit_commentaire.label()}}{{form.submit_commentaire()}}</p>
+            {{form.csrf_token}}
         </form>
-    
 
-</header>   
+    </h3>
+
+
+
+</h3>
+
 {% endblock %}
