@@ -21,13 +21,13 @@ for elmt in curseur:
 
 #créer base de données atricles
 
-
+"""
 articles = db.articles
 curseur = articles.find({})
 
 for elmt in curseur:
     print(elmt)
-
+"""
 
 
 """

@@ -2,49 +2,37 @@
 
 {% block body %}
 
-
-
-<header>
-    <h1>HISTORIA</h1>
+<body>
+    <h1>HISTORI.A</h1>
     <h1 class="description">
         Bienvenue à Histori.a : blog d'articles scientifique !
     </h1>
-{% if login %}
-{{login}}
-{%endif%}
+
+    
+    {% if login %}
+    {{login}}
+    {%endif%}
     <nav class="container">
         <ul>
-            <li><a href="inscription">Créer un compte</a></li>
+            <li><a href="inscription">INSCRIPTION</a></li>
         </ul>
         <ul>
             <li><a href="connexion">CONNEXION</a></li>
             <li><a href=""></a></li>
-            
+
         </ul>
     </nav>
-    
+
     {%for elmt in articles %}
-        <h3>
-            <a href="article/{{elmt['titre']}}" class = title >{{elmt["titre"]}}</a> 
-            <p class = "digital">{{elmt["date"]}}</p>  
-            <p>{{elmt["texte"]}}</p>  
-            <p>{{elmt["commentaire.date"]}}</p> 
-            <p>{{elmt["commentaire.Username"]}}</p>  
-            <p>{{elmt["commentaire.text"]}}</p>  
-        </h3>
-        {% endfor %}
-    
-       
-</body>
-            <li><a href="connexion">Connecter</a></li>
-            
-        </ul>
-    </nav>
- 
-    {%for elmt in articles %}
-        <a href="article/{{elmt['titre']}}">{{elmt["titre"]}}</a>     
+    <h3>
+        <p><a class=title href="article/{{elmt['titre']}}">{{elmt["titre"]}}</a></p>
+        <p>{{elmt["texte"]}}</p>
+        <p> Posté le {{elmt["date"]}}</p>
+        <p><a class=title href="article/{{elmt['titre']}}">COMMENTAIRES </a></p>
+
+    </h3>
     {% endfor %}
-</header>
+
+
+</body>
 {% endblock %}
-
-
