@@ -8,7 +8,7 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from datetime import date, datetime
 from pymongo import MongoClient
 import remplirbdd
-from templates.formulaire import Connexion,Inscription,Commentaire,Gestion_article, Suppression_article
+from templates.formulaire import Connexion, Gestion_commentaire,Inscription,Commentaire,Gestion_article, Suppression_article
 client = MongoClient("127.0.0.1:27017")
 # pprint library is used to make the output look more pretty
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
@@ -139,7 +139,7 @@ def administration_modification():
                         
     return render_template("page_administration_modification.html", form1=form1, articles = liste_article,form2=form2)
 
-@app.route("/moderation_commentaire", methods=["GET", "POST"])
+@app.route("/moderation_commentaire")
 def moderation_commentaire():
     liste_article = articles.find({})
     try:
@@ -147,3 +147,35 @@ def moderation_commentaire():
     except:
         login = None
     return render_template("affichage_article_pour_commentaire.html", articles=liste_article, login=login)
+
+
+@app.route('/voir_commentaire_article/<nom>', methods=['GET', 'POST'])
+def voir_commentaire_article(nom):
+    mon_article = articles.find_one({"titre": nom})
+    print({"titre": mon_article["titre"]})
+    form = Gestion_commentaire()
+    id_utilisateur = utilisateurs.find(
+        {"login": session["login"]}, {'_id'})[0]["_id"]
+    # for elmt in curseur:
+    new = articles.find({"titre": mon_article["titre"]})[0]["commentaire"]
+    i=0
+    for elmt in mon_article["commentaire"]:
+        i +=1
+        commentaire = [elmt,i]
+    if form.validate_on_submit():
+        new.append({"date": str(datetime.now()),
+                    "Username": session["login"],
+                    "User_ID": id_utilisateur,
+                    "text": form.data["commentaire_utilisateur"],
+                    "validé": form.data["valider_commentaire"]
+
+                    })
+        articles.update_one({"titre": mon_article["titre"]},
+                            {"$set": {
+                                "commentaire": new
+                            }
+        }
+        )
+
+    return render_template("moderation_commentaire.html", article=mon_article,commentaire=commentaire, form=form)
+

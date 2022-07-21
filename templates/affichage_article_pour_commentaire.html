@@ -37,10 +37,10 @@
 
     {%for elmt in articles %}
     <h3>
-        <p><a class=title href="article/{{elmt['titre']}}">{{elmt["titre"]}}</a></p>
+        <p><a class=title href="voir_commentaire_article/{{elmt['titre']}}">{{elmt["titre"]}}</a></p>
         <p>{{elmt["texte"]}}</p>
         <p> Posté le {{elmt["date"]}}</p>
-        <p><a class=title href="article/{{elmt['titre']}}">COMMENTAIRES </a></p>
+        <p><a class=title href="voir_commentaire_article/{{elmt['titre']}}">COMMENTAIRES </a></p>
 
     </h3>
     {% endfor %}

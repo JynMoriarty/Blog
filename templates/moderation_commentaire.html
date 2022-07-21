@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1> {{article["titre"]}}</h1>
+
+
+    <h3>
+        <p class=title>COMMENTAIRES :</p>
+        {%for elmt in article["commentaire"] %}
+        <p>{{elmt["Username"]}}</p>
+        <p>{{elmt["text"]}}</p>
+        <p>posté le {{elmt["date"]}}</p>
+        <div class="commentaire"></div>
+        <form action="" method="post">
+            {{form.hidden_tag()}}
+            <p>{{form.modifier_le_commentaire.label()}}{{form.modifier_le_commentaire()}}</p>
+            <p>{{form.valider_commentaire.label()}}{{form.valider_commentaire()}}</p>
+            <p>{{form.submit_modération_commentaire.label()}}{{form.submit_modération_commentaire()}}</p>
+            {{form.csrf_token}}
+
+        </form>        
+        {% endfor %}
+        {% if login %}
+        {{login}}
+        {%endif%}
+
+        <div class="commentaire"></div>
+
+
+    </h3>
+
+
+
+</h3>
+
+{% endblock %}
