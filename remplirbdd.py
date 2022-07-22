@@ -3,14 +3,15 @@ from pymongo import MongoClient
 from datetime import datetime
 client = MongoClient("127.0.0.1:27017")
 db = client.blog
-"""
-#créer base de données pour identifiants de connexions
 
+#créer base de données pour identifiants de connexions
+"""
 utilisateurs =db.utilisateurs
 #utilisateur_antoine = {"login" : "antoine@meresse.info","password" : "01234"}
 #reponse = utilisateurs.insert_one(utilisateur_antoine )
 db.utilisateur.drop()
-utilisateur_premier_administrateur = {"login" : "antoine@meresse.info","password" : "01234" , "droit_admin" : True}
+utilisateur_premier_administrateur = {"login" : "antoine@meresse.info","password" : "c565fe03ca9b6242e01dfddefe9bba3d98b270e19cd02fd85ceaf75e2b25bf12" , "droit_admin" : True}
+utilisateurs.insert_one(utilisateur_premier_administrateur)
 """
 """
 #test
@@ -18,6 +19,7 @@ curseur = utilisateurs.find({})
 
 for elmt in curseur:
     print(elmt)
+
 """
 
 

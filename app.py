@@ -10,6 +10,7 @@ from datetime import date, datetime
 from pymongo import MongoClient
 import remplirbdd
 from templates.formulaire import Connexion,Gestion_commentaire, Inscription, Commentaire, Gestion_article, Suppression_article ,Gestion_modification_commentaire ,Gestion_supprestion_commentaire
+import hashlib
 client = MongoClient("127.0.0.1:27017")
 # pprint library is used to make the output look more pretty
 # connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
@@ -31,6 +32,8 @@ def accueil():
         login = session["login"]
     except:
         login = None
+    print(login)
+    
     return render_template("accueil.html", articles=liste_article, login=login)
 
 
@@ -39,14 +42,16 @@ def voir_article(nom):
     mon_article = articles.find_one({"titre": nom})
     print({"titre": mon_article["titre"]})
     form = Commentaire()
+    print(session["login"])
     id_utilisateur = utilisateurs.find(
-        {"login": session["login"]}, {'_id'})[0]["_id"]
+        {"login": session["login"][0]}, {'_id'})[0]["_id"]
+
     # for elmt in curseur:
     new = articles.find({"titre": mon_article["titre"]})[0]["commentaire"]
 
     if form.validate_on_submit():
         new.append({"date": str(datetime.now()),
-                    "Username": session["login"],
+                    "Username": session["login"][0],
                     "User_ID": id_utilisateur,
                     "text": form.data["commentaire_utilisateur"],
                     "validé": False
@@ -66,9 +71,12 @@ def voir_article(nom):
 def inscription():
     form = Inscription()
     if form.validate_on_submit():
-        creation_utilisateur = utilisateurs.insert_one(
-            {"login": form.data["login_inscription"], "password": form.data["password_inscription"]})
-        print(creation_utilisateur)
+        mot_de_passe_chiffre=form.data["password_inscription"]
+        h = hashlib.new('sha256')
+        h.update(mot_de_passe_chiffre.encode())
+        utilisateurs.insert_one(
+            {"login": form.data["login_inscription"], "password":h.hexdigest(), "droit_admin" :False })
+
         return redirect(url_for("accueil"))
     return render_template("creation_compte.html", form=form)
 
@@ -79,20 +87,34 @@ def connexion():
     form = Connexion()
     if form.validate_on_submit():
         print("c'est bon")
+        h = hashlib.new('sha256')
+
+        h.update(form.data["password"].encode())
+        mot_de_passe_a_retrouve = h.hexdigest()
         utilisateur = utilisateurs.find_one(
-            {"login": form.data["login"], "password": form.data["password"]})
-        if form.data["login"] == utilisateur["login"] and form.data["password"] == utilisateur["password"]:
-            session["login"] = utilisateur["login"]
+            {"login": form.data["login"], "password": mot_de_passe_a_retrouve })
+        print(utilisateur)
+        if form.data["login"] == utilisateur["login"] and mot_de_passe_a_retrouve == utilisateur["password"]:
+            session["login"] = [utilisateur["login"],utilisateur["droit_admin"]]
             return redirect(url_for("accueil"))
     return render_template("connexion.html", form=form)
 
+
+
+@app.route("/logout")
+def logout():
+    session["login"] = None
+    return redirect("/")
+
+
+    
 
 @app.route('/administration_creation', methods=['GET', 'POST'])
 def administration_creation():
     liste_article = articles.find({})
     form = Gestion_article()
     id_utilisateur = utilisateurs.find(
-        {"login": session["login"]}, {'_id'})[0]["_id"]
+        {"login": session["login"][0]}, {'_id'})[0]["_id"]
     titre_article = form.data["article_ajout_titre"]
     texte_article = form.data["article_ajout_texte"]
 

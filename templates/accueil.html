@@ -11,20 +11,25 @@
 
 
     <nav class="container">
-        {% if login %}
+        {% if login[0] %}
         
         <ul>
-            <li>Bienvenue {{login}}</li>
+            <li>Bienvenue {{login[0]}}</li>
         </ul>
-        <ul>
-            <li><a href="administration_creation">Création</a></li>
-        </ul>
-        <ul>
-            <li><a href="administration_modification">Modficiation</a></li>
-        </ul>
-        <ul>
-            <li><a href="moderation_commentaire">Commentaire</a></li>
-        </ul>
+            {%if login[1] %}
+            <ul>
+                <li><a href="administration_creation">Création</a></li>
+            </ul>
+            <ul>
+                <li><a href="administration_modification">Modficiation</a></li>
+            </ul>
+            <ul>
+                <li><a href="moderation_commentaire">Commentaire</a></li>
+            </ul>
+            <ul>
+                <li><a href="/logout">Deconnexion</a></li>
+            </ul>            
+            {%endif%}
         {%else%}
         <ul>
             <li><a href="connexion">CONNEXION</a></li>
