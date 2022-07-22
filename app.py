@@ -20,6 +20,7 @@ client = MongoClient("127.0.0.1:27017")
 
 db = client.blog
 articles = db.articles
+
 utilisateurs = db.utilisateurs
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SecretKey'
@@ -27,7 +28,7 @@ app.config['SECRET_KEY'] = 'SecretKey'
 
 @app.route("/", methods=["GET", "POST"])
 def accueil():
-    liste_article = articles.find({})
+    liste_article = articles.find({}).sort('date',-1)
     try:
         login = session["login"]
     except:
@@ -38,31 +39,32 @@ def accueil():
 
 
 @app.route('/article/<nom>', methods=['GET', 'POST'])
+
 def voir_article(nom):
     mon_article = articles.find_one({"titre": nom})
     print({"titre": mon_article["titre"]})
     form = Commentaire()
-    print(session["login"])
-    id_utilisateur = utilisateurs.find(
-        {"login": session["login"][0]}, {'_id'})[0]["_id"]
+    if session["login"] is not None:
+        id_utilisateur = utilisateurs.find(
+            {"login": session["login"][0]}, {'_id'})[0]["_id"]
 
-    # for elmt in curseur:
-    new = articles.find({"titre": mon_article["titre"]})[0]["commentaire"]
+        # for elmt in curseur:
+        new = articles.find({"titre": mon_article["titre"]})[0]["commentaire"]
 
-    if form.validate_on_submit():
-        new.append({"date": str(datetime.now()),
-                    "Username": session["login"][0],
-                    "User_ID": id_utilisateur,
-                    "text": form.data["commentaire_utilisateur"],
-                    "validé": False
+        if form.validate_on_submit():
+            new.append({"date": str(datetime.now()),
+                        "Username": session["login"][0],
+                        "User_ID": id_utilisateur,
+                        "text": form.data["commentaire_utilisateur"],
+                        "validé": False
 
-                    })
-        articles.update_one({"titre": mon_article["titre"]},
-                            {"$set": {
-                                "commentaire": new
-                            }
-        }
-        )
+                        })
+            articles.update_one({"titre": mon_article["titre"]},
+                                {"$set": {
+                                    "commentaire": new
+                                }
+            }
+            )
 
     return render_template("article.html", article=mon_article, form=form)
 
@@ -111,7 +113,7 @@ def logout():
 
 @app.route('/administration_creation', methods=['GET', 'POST'])
 def administration_creation():
-    liste_article = articles.find({})
+    liste_article = articles.find({}).sort('date',-1)
     form = Gestion_article()
     id_utilisateur = utilisateurs.find(
         {"login": session["login"][0]}, {'_id'})[0]["_id"]
@@ -138,7 +140,7 @@ def administration_creation():
 
 @app.route('/administration_modification', methods=['GET', 'POST'])
 def administration_modification():
-    liste_article = articles.find({})
+    liste_article = articles.find({}).sort('date',-1)
     form1 = Gestion_article()
     form2 = Suppression_article()
 
@@ -167,7 +169,7 @@ def administration_modification():
 
 @app.route("/moderation_commentaire")
 def moderation_commentaire():
-    liste_article = articles.find({})
+    liste_article = articles.find({}).sort('date',-1)
     try:
         login = session["login"]
     except:
@@ -179,7 +181,7 @@ def moderation_commentaire():
 def voir_commentaire_article(nom):
     form1=Gestion_modification_commentaire()
     form2=Gestion_supprestion_commentaire()
-    mon_article = articles.find_one({"titre": nom})
+    mon_article = articles.find_one({"titre": nom}).sort('date',-1)
     print("c'est bon")
     print(mon_article)
     commentaire_a_changer = mon_article["commentaire"]

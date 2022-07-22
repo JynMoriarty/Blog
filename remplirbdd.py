@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from datetime import datetime
 client = MongoClient("127.0.0.1:27017")
 db = client.blog
+articles =db.articles
 
 #créer base de données pour identifiants de connexions
 """
