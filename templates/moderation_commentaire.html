@@ -5,21 +5,19 @@
 
 
     <h3>
-        <p class=title>COMMENTAIRES :</p>
-        {%for elmt in article["commentaire"] %}
-        <p>{{elmt["Username"]}}</p>
-        <p>{{elmt["text"]}}</p>
-        <p>posté le {{elmt["date"]}}</p>
+        <p class=title>COMMENTAIRES :</p>     
+        {%for elmt in liste_commentaire%}
+        <p>{{elmt}}</p>
+        
         <div class="commentaire"></div>
+        <a href="modifier_commentaire_article">{{elmt[3]}}</a>
         <form action="" method="post">
-            {{form.hidden_tag()}}
-            <p>{{form.modifier_le_commentaire.label()}}{{form.modifier_le_commentaire()}}</p>
-            <p>{{form.valider_commentaire.label()}}{{form.valider_commentaire()}}</p>
-            <p>{{form.submit_modération_commentaire.label()}}{{form.submit_modération_commentaire()}}</p>
-            {{form.csrf_token}}
+
+            <p><a href="{{ url_for('supprimer_commentaire', nom=article['titre'],numero=elmt[3]) }}">supprimer</a></p>
 
         </form>        
         {% endfor %}
+   
         {% if login %}
         {{login}}
         {%endif%}

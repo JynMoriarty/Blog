@@ -31,8 +31,15 @@ class Suppression_article(FlaskForm):
     article_suppression_titre=StringField("Veuillez entrer le titre de votre article : ")
     submit_suppression_texte = SubmitField("Envoyer votre texte") 
 
+class Gestion_modification_commentaire(FlaskForm):
+    modifier_le_commentaire=StringField("Veuillez modifier le commentaire : ")
+    submit_modification_commentaire= SubmitField("Voulez vous modifier le commentaire ?")
+
+class Gestion_supprestion_commentaire(FlaskForm):
+    submit_suppression_commentaire= SubmitField("Voulez vous supprimer votre commentaire ?")
+
 class Gestion_commentaire(FlaskForm):
-    sauvegarde_id=0
+    récuperer_position_commentaire = StringField("Veuillez entrer la position du commentaire : ")
     modifier_le_commentaire=StringField("Veuillez modifier le commentaire : ")
     valider_commentaire=BooleanField("Valider le commentaire")
     submit_modération_commentaire= SubmitField("Afficher votre commentaire.")
