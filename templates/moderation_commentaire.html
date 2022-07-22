@@ -7,7 +7,10 @@
     <h3>
         <p class=title>COMMENTAIRES :</p>     
         {%for elmt in liste_commentaire%}
-        <p>{{elmt}}</p>
+        <p>{{elmt[0]}}</p>
+        <p>{{elmt[1]}}</p>
+        <p>{{elmt[2]}}</p>
+
         
         <div class="commentaire"></div>
         <a href="modifier_commentaire_article">{{elmt[3]}}</a>

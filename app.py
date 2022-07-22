@@ -181,7 +181,7 @@ def moderation_commentaire():
 def voir_commentaire_article(nom):
     form1=Gestion_modification_commentaire()
     form2=Gestion_supprestion_commentaire()
-    mon_article = articles.find_one({"titre": nom}).sort('date',-1)
+    mon_article = articles.find_one({"titre": nom})
     print("c'est bon")
     print(mon_article)
     commentaire_a_changer = mon_article["commentaire"]
@@ -193,7 +193,7 @@ def voir_commentaire_article(nom):
     i = 0
     for elmt in commentaire_a_changer:
         liste_des_commentaires.append(
-            (elmt["Username"], elmt["User_ID"], elmt["text"], i))
+            (elmt["Username"], elmt["text"], i))
         
         i += 1
     if form1.validate_on_submit():
