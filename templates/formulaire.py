@@ -29,7 +29,7 @@ class Gestion_article(FlaskForm):
 
 class Suppression_article(FlaskForm):
     article_suppression_titre=StringField("Veuillez entrer le titre de votre article : ")
-    submit_suppression_texte = SubmitField("Envoyer votre texte") 
+    submit_suppression_texte = SubmitField("Supprimer votre article") 
 
 class Gestion_modification_commentaire(FlaskForm):
     modifier_le_commentaire=StringField("Veuillez modifier le commentaire : ")

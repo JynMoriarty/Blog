@@ -226,4 +226,4 @@ def supprimer_commentaire(nom,numero):
         "commentaire": liste_comm
     }
     })
-    return redirect(url_for("moderation_commentaire"))
+    return redirect(url_for("voir_commentaire_article", nom=nom))

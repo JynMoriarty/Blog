@@ -13,10 +13,10 @@
 
         
         <div class="commentaire"></div>
-        <a href="modifier_commentaire_article">{{elmt[3]}}</a>
+        <a href="modifier_commentaire_article">{{elmt[2]}}</a>
         <form action="" method="post">
 
-            <p><a href="{{ url_for('supprimer_commentaire', nom=article['titre'],numero=elmt[3]) }}">supprimer</a></p>
+            <p><a href="{{ url_for('supprimer_commentaire', nom=article['titre'],numero=elmt[2]) }}">supprimer</a></p>
 
         </form>        
         {% endfor %}
